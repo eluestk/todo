@@ -1,0 +1,4 @@
+{
+    "proxy": "http://ia-vw01.inet-asp.ggnet.jp:8080",
+    "https-proxy": "http://ia-vw01.inet-asp.ggnet.jp:8080"
+}
