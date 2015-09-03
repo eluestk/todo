@@ -11,7 +11,7 @@ gulp.task('scripts', [], function() {
 		.pipe(sourcemaps.init())
 		.pipe(babel())
 		.pipe(sourcemaps.write())
-		.pipe(gulp.dest('./tmp/serve/app'))
+		.pipe(gulp.dest('./tmp/serve/js'))
 		.pipe(browserSync.reload({ stream: true }));
 });
 
@@ -19,7 +19,11 @@ gulp.task('scripts', [], function() {
 gulp.task('serve', function() {
 	browserSync.init({
 		server: {
-			baseDir: ['./src/', './tmp/']
+			baseDir: [
+				'./src/',
+				'./tmp/',
+				'./bower_components/'
+			]
 		}
 	});
 	gulp.watch(['./src/app/**/*.js'], function(){

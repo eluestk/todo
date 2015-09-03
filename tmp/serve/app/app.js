@@ -1,4 +1,0 @@
-'use strict';
-
-alert('ALERT DIALOG!!!!!!');
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLEtBQUssQ0FBQyxvQkFBb0IsQ0FBQyxDQUFDIiwiZmlsZSI6ImFwcC5qcyIsInNvdXJjZXNDb250ZW50IjpbImFsZXJ0KCdBTEVSVCBESUFMT0chISEhISEnKTsiXSwic291cmNlUm9vdCI6Ii9zb3VyY2UvIn0=
