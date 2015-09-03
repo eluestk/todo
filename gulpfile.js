@@ -7,11 +7,11 @@ var browserSync = require('browser-sync').create();
 
 // scripts
 gulp.task('scripts', [], function() {
-	return gulp.src('/app/**/*.js')
+	return gulp.src('./src/app/**/*.js')
 		.pipe(sourcemaps.init())
 		.pipe(babel())
 		.pipe(sourcemaps.write())
-		.pipe(gulp.dest('.tmp/serve/app'))
+		.pipe(gulp.dest('./tmp/serve/app'))
 		.pipe(browserSync.reload({ stream: true }));
 });
 
@@ -22,5 +22,10 @@ gulp.task('serve', function() {
 			baseDir: ['./src/', './tmp/']
 		}
 	});
-	gulp.watch(['./**/*.js', './**/*.html']).on('change', browserSync.reload);
+	gulp.watch(['./src/app/**/*.js'], function(){
+		gulp.start('scripts');
+	});
+	gulp.watch(['./src/*.html'], function(event){
+		browserSync.reload(event.path);
+	});
 });
