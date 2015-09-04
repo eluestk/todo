@@ -3,11 +3,13 @@
 var gulp = require('gulp');
 var sourcemaps = require('gulp-sourcemaps');
 var babel = require('gulp-babel');
+var plumber = require('gulp-plumber');
 var browserSync = require('browser-sync').create(); 
 
 // scripts
 gulp.task('scripts', [], function() {
 	return gulp.src('./src/app/**/*.js')
+    .pipe(plumber())
 		.pipe(sourcemaps.init())
 		.pipe(babel())
 		.pipe(sourcemaps.write())

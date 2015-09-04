@@ -1,7 +1,6 @@
-
 (function() {
-  'use strict';
-  app = app || {};
+  // 'use strict';
+  this.app = this.app || {};
   app.common = {
     // itemをセットします
     setItem: function setItem(title, priority, detail) {
@@ -17,7 +16,7 @@
       
     },
     Todos,
-    TodoItems
+    Todo
   };
 
 
@@ -27,10 +26,19 @@
       // localStrageからitemを読む
       // this.todoItems = '';
       this.todoItems = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        var itemKey = localStorage.key(i);
+        if (/[0-9]{13}/.test(itemKey)) {
+          var item = JSON.parse(localStorage.getItem(itemKey));
+          this.todoItems.push(item);
+        }
+      }
     }
     add(todoItem) {
       // todoItems.push(todoItem);
+      this.todoItems.push(todoItem);
       // localStorageに書き込む
+     localStorage.setItem(Date.now().toString(), JSON.stringify(todoItem));
     }
     remove(todoItemId) {
       // for();
@@ -42,12 +50,12 @@
   }
   
   class Todo {
-    id = 0;
-    title = '';
-    description = '';
-    priority = '';
     constructor(id, title, descrption, priority) {
-      //
+      // 
+      this.id = id;
+      this.title = title;
+      this.priority = priority;
+      this.description;
     }
     update(title, description, priority) {
       // 
