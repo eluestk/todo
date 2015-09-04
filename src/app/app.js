@@ -1,4 +1,5 @@
 /// <reference path="../../typings/jquery/jquery.d.ts" />
+var app = app || {};
 
 (function() {
   'use strict';
@@ -13,15 +14,16 @@
       const $numChecked    = $('.js-num-checked');
       
       // 初期処理
-      (() => {
-        
-      });
+      let todos = new app.common.Todos;
+      for (let i = 0; i < todos.todoItems.length; i++) {
+        $todolist.append('<li class="js-todoitem"><input type="checkbox" class="js-checkbox">' + todos.todoItems[i].title + '</input></li>');
+      }
       
       // addボタンクリック
       $('.js-add').click(() => {
         if($inputText.val()) {
           
-          let item = app.common.setItem($inputText.val(), $inputPriority.val(), $inputDetail.val());
+          let todoItem = new app.common.Todo(Date.now().toString(), $inputText.val(), $inputPriority.val(), $inputDetail.val());
           localStorage.setItem(Date.now().toString(), JSON.stringify(item));
           
           $inputText.val('');
@@ -45,15 +47,17 @@
       
       // archiveボタンクリック
       $('.js-archive').click(() => {
-        $('.js-checkbox:checked').parents('.js-list').remove();
+        $('.js-checkbox:checked').parents('.js-todoitem').remove();
         updateChecks();
       });
       
       
       // デバッグ用テストボタン
       $('.js-test').click(() => {
-        let item = setItem('TEST', 1, 'very long text with unlimited length');
-        localStorage.setItem(+new Date(), JSON.stringify(item));
+        // // todos&localStorageに追加
+        // todos.add(app.common.setItem('1','2','3'));
+        // console.log(todos);
+        
       });
       
       function updateChecks() {
@@ -67,7 +71,7 @@
           
           if (/[0-9]{13}/.test(itemKey)) {
             var item = JSON.parse(localStorage.getItem(itemKey));
-            $todolist.append('<li class="js-list"><input type="checkbox" class="js-checkbox">' + item.title + '</input></li>');
+            $todolist.append('<li class="js-todoitem"><input type="checkbox" class="js-checkbox">' + item.title + '</input></li>');
           }
         }
       };  
