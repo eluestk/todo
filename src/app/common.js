@@ -38,7 +38,7 @@
       // todoItems.push(todoItem);
       this.todoItems.push(todoItem);
       // localStorageに書き込む
-     localStorage.setItem(Date.now().toString(), JSON.stringify(todoItem));
+      localStorage.setItem(Date.now().toString(), JSON.stringify(todoItem));
     }
     remove(todoItemId) {
       // for();
