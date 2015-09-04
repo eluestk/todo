@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+  <meta charset="utf-8">
+  <title>TODO：詳細画面</title>
+</head>
+<body>
+  <div>
+    <h1>TODO：詳細画面</h1>
+  </div>
+  <div>
+    件名　：
+    <input type="text" class="js-text" />
+    <br>
+    優先度：
+    <input type="radio" class="js-priority" name="priority" value="0">高　
+    <input type="radio" class="js-priority" name="priority" value="1" checked>中　
+    <input type="radio" class="js-priority" name="priority" value="2">低
+    <br>
+    詳細　：
+    <textarea class="js-text-detail"></textarea>
+    <br>
+    <input type="button" class="js-save" value="save" />
+    <input type="button" class="js-back" value="back" />
+    <a href="index.html">back</a>
+  </div>
+  
+  <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="serve/js/common.js"></script>
+  <script type="text/javascript" src="serve/js/app.js"></script>
+</body>
+</html>
