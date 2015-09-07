@@ -8,7 +8,6 @@ var app = app || {};
  
       const $todolist      = $('.js-todolist');
       const $inputText     = $('.js-text');
-      const $inputPriority = $('.js-priority:checked');
       const $inputDetail   = $('.js-detail');
       const $numListed     = $('.js-num-listed');
       const $numChecked    = $('.js-num-checked');
@@ -16,9 +15,6 @@ var app = app || {};
       // 初期処理
       let todos = new app.common.Todos;
       todos.todoItems.forEach(item => appendList(item));
-      // for (let i = 0; i < todos.todoItems.length; i++) {
-      //   appendList(todos.todoItems[i])
-      // }
       updateChecks();
       
       // addボタンクリック
@@ -67,33 +63,12 @@ var app = app || {};
         $checked.parents('.js-todoitem').remove();
         updateChecks();
       });
-      
-      
-      // デバッグ用テストボタン
-      $('.js-test').click(() => {
-        // // todos&localStorageに追加
-        // todos.add(app.common.setItem('1','2','3'));
-        // console.log(todos);
-        
-      });
-      
+            
       function updateChecks() {
         $numListed.text($('.js-todolist > li').length);
         $numChecked.text($('.js-checkbox:not(:checked)').length);
       };
       
-      // function refreshList() {
-      //   for (var i = 0; i < localStorage.length; i++) {
-      //     var itemKey = localStorage.key(i);
-          
-      //     if (/[0-9]{13}/.test(itemKey)) {
-      //       var item = JSON.parse(localStorage.getItem(itemKey));
-      //       $todolist.append('<li class="js-todoitem"><input type="checkbox" class="js-checkbox">' + item.title + '</input></li>');
-      //     }
-      //   }
-      // };  
-      
-      // function appendList(id, title, priority, detail) {
       function appendList(todoItem) {
         let priorityClass = toPriorityClass(todoItem.priority);     
         $todolist.append(`

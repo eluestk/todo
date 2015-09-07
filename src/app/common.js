@@ -31,9 +31,6 @@ var app = app || {};
         localStorage.removeItem(todoItemIds[i]);
       }
     }
-    getTodos() {
-      return this.todoItems;
-    }
   };
   
   class Todo {
