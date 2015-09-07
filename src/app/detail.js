@@ -11,9 +11,13 @@ var app = app || {};
     const $inputDetail   = $('.js-detail');
     
     // 初期処理
-    let itemKey = app.common.getURLParam('id');
+    let itemKey = app.common.getURLParamValue('id');
     let item = JSON.parse(localStorage.getItem(itemKey));
-    let todoItem = new app.common.Todo(itemKey, item.title, item.priority, item.detail);
+    let todoItem = new app.common.Todo(
+                                        itemKey,
+                                        item.title,
+                                        item.priority,
+                                        item.detail);
     
     $inputText.val(todoItem.title);
     $inputPriority.val([todoItem.priority]);
@@ -21,7 +25,10 @@ var app = app || {};
     
     // saveボタンクリック
     $('.js-save').click(() => {
-      todoItem.update($inputText.val(), $('.js-priority:checked').val(), $inputDetail.val());
+      todoItem.update(
+                        $inputText.val(),
+                        $('.js-priority:checked').val(),
+                        $inputDetail.val());
       alert('saved!');
     });
     

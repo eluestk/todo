@@ -50,14 +50,14 @@ var app = app || {};
       this.priority = priority;
       this.detail = detail;
       // localStorageの内容をアップデートする
-      let item = app.common.setItem(title, priority, detail);
-      localStorage.setItem(this.id, JSON.stringify(item));
+      let todo = app.common.toLocalStorageTodo(title, priority, detail);
+      localStorage.setItem(this.id, JSON.stringify(todo));
     }
   };
   
   app.common = {
     // itemをセットします
-    setItem: function setItem(title, priority, detail) {
+    toLocalStorageTodo: function toLocalStorageTodo(title, priority, detail) {
       let item = {
         title,
         priority,
@@ -69,15 +69,18 @@ var app = app || {};
     getItem: function getItem() {
       
     },
-    getURLParam: function getURLParam(param) {
-      let pageURL = window.location.search.substring(1);
-      let URLvars = pageURL.split('&');
-      for (var i = 0; i < URLvars.length; i++) {
-        let paramName = URLvars[i].split('=');
-        if (paramName[0] === param) {
-          return paramName[1];
-        }
-      }
+    getURLParamValue: function getURLParamValue(targetParamName) {
+      let searchStr = window.location.search.substring(1);
+      let searchStrItems = searchStr.split('&');
+      let targetParamValue;
+      searchStrItems.forEach((searchStrItem) => {
+        let splitItem = searchStrItem.split('=');
+        if (splitItem[0] === targetParamName) {
+          targetParamValue = splitItem[1];
+        }        
+      });
+      if (!targetParamValue) throw new Error('idない');
+      return targetParamValue;
     },
     Todos,
     Todo

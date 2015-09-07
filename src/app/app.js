@@ -15,17 +15,22 @@ var app = app || {};
       
       // 初期処理
       let todos = new app.common.Todos;
-      for (let i = 0; i < todos.todoItems.length; i++) {
-        appendList(todos.todoItems[i].id, todos.todoItems[i].title, todos.todoItems[i].priority, todos.todoItems[i].detail)
-      }
+      todos.todoItems.forEach(item => appendList(item));
+      // for (let i = 0; i < todos.todoItems.length; i++) {
+      //   appendList(todos.todoItems[i])
+      // }
       updateChecks();
       
       // addボタンクリック
       $('.js-add').click(() => {
         if($inputText.val()) {
           
-          let todoItem = new app.common.Todo(Date.now().toString(), $inputText.val(), $('.js-priority:checked').val(), $inputDetail.val());
-          appendList(todoItem.id, todoItem.title, todoItem.priority, todoItem.detail);
+          let todoItem = new app.common.Todo(
+                                              Date.now().toString(),
+                                              $inputText.val(),
+                                              $('.js-priority:checked').val(),
+                                              $inputDetail.val());
+          appendList(todoItem);
           todos.add(todoItem);
           
           $inputText.val('');
@@ -38,10 +43,11 @@ var app = app || {};
       
       // checkboxクリック
       $todolist.click((event) => {
-        if ($(event.target).prop('checked')) {
-          $(event.target).parent().css('text-decoration', 'line-through');
+        const $check = $(event.target);
+        if ($check.prop('checked')) {
+          $check.parent().css('text-decoration', 'line-through');
         } else {
-          $(event.target).parent().css('text-decoration', 'none');
+          $check.parent().css('text-decoration', 'none');
         }
         updateChecks();
       });
@@ -50,13 +56,15 @@ var app = app || {};
       $('.js-archive').click(() => {
         // remove対象のidを基にlocalStorageから削除
         let removeList = [];
-        $('.js-checkbox:checked').each(function(index, checkbox) {
+        const $checked = $('.js-checkbox:checked');
+        
+        $checked.each((index, checkbox) => {
           removeList.push($(this).val());
         });
         todos.remove(removeList);
         
         // 画面から削除
-        $('.js-checkbox:checked').parents('.js-todoitem').remove();
+        $checked.parents('.js-todoitem').remove();
         updateChecks();
       });
       
@@ -74,20 +82,34 @@ var app = app || {};
         $numChecked.text($('.js-checkbox:not(:checked)').length);
       };
       
-      function refreshList() {
-        for (var i = 0; i < localStorage.length; i++) {
-          var itemKey = localStorage.key(i);
+      // function refreshList() {
+      //   for (var i = 0; i < localStorage.length; i++) {
+      //     var itemKey = localStorage.key(i);
           
-          if (/[0-9]{13}/.test(itemKey)) {
-            var item = JSON.parse(localStorage.getItem(itemKey));
-            $todolist.append('<li class="js-todoitem"><input type="checkbox" class="js-checkbox">' + item.title + '</input></li>');
-          }
-        }
-      };  
+      //     if (/[0-9]{13}/.test(itemKey)) {
+      //       var item = JSON.parse(localStorage.getItem(itemKey));
+      //       $todolist.append('<li class="js-todoitem"><input type="checkbox" class="js-checkbox">' + item.title + '</input></li>');
+      //     }
+      //   }
+      // };  
       
-      function appendList(id, title, priority, detail) {
+      // function appendList(id, title, priority, detail) {
+      function appendList(todoItem) {
+        let priorityClass = toPriorityClass(todoItem.priority);     
+        $todolist.append(`
+            <li class="js-todoitem ${priorityClass}">
+              <input id="todoitem-${todoItem.id}" type="checkbox" class="js-checkbox" value="${todoItem.id}">
+              <label for="todoitem-${todoItem.id}">
+                <a href="detail.html?id=${todoItem.id}" title="${todoItem.detail}">${todoItem.title}</a>
+              </label>
+            </li>
+          `);
+
+      }
+ 
+      function toPriorityClass(priority) {
         let priorityClass;
-        switch (priority) {
+         switch (priority) {
           case "0":
             priorityClass = "priority-high";
             break;
@@ -98,12 +120,7 @@ var app = app || {};
             priorityClass = "priority-low";
             break;
         }
-        
-        $todolist.append('<li class="js-todoitem ' + priorityClass + 
-          '"><input type="checkbox" class="js-checkbox" value="' + id + 
-          '"><a href="detail.html?id=' + id + '" title="' + detail + 
-          '">' + title + '</a></input></li>');
-
+        return priorityClass;     
       }
   });
 })();
