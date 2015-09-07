@@ -13,20 +13,19 @@
     <input type="text" class="js-text" />
     <br>
     優先度：
-    <input type="radio" class="js-priority" name="priority" value="0">高　
-    <input type="radio" class="js-priority" name="priority" value="1" checked>中　
-    <input type="radio" class="js-priority" name="priority" value="2">低
-    <br>
+      <input id="priority-high" type="radio" class="js-priority" name="priority" value="0"><label for="priority-high">高</label>
+      <input id="priority-mid"  type="radio" class="js-priority" name="priority" value="1"><label for="priority-mid">中</label>
+      <input id="priority-low"  type="radio" class="js-priority" name="priority" value="2"><label for="priority-low">低</label>
+      <br>
     詳細　：
-    <textarea class="js-text-detail"></textarea>
+    <textarea class="js-detail"></textarea>
     <br>
     <input type="button" class="js-save" value="save" />
     <input type="button" class="js-back" value="back" />
-    <a href="index.html">back</a>
   </div>
   
   <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="serve/js/common.js"></script>
-  <script type="text/javascript" src="serve/js/app.js"></script>
+  <script type="text/javascript" src="serve/js/detail.js"></script>
 </body>
 </html>
