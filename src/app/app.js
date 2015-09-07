@@ -85,14 +85,14 @@ var app = app || {};
       function toPriorityClass(priority) {
         let priorityClass;
          switch (priority) {
-          case "0":
-            priorityClass = "priority-high";
+          case '0':
+            priorityClass = 'priority-high';
             break;
-          case "1":
-            priorityClass = "priority-med";
+          case '1':
+            priorityClass = 'priority-med';
             break;
-          case "2":
-            priorityClass = "priority-low";
+          case '2':
+            priorityClass = 'priority-low';
             break;
         }
         return priorityClass;     
