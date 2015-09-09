@@ -1,0 +1,11 @@
+<div>
+  <header-global></header-global>
+  <todo-container model="todos">
+     <ul>
+       <li ng-repeat="todo in vm.model.todos">
+         <todo-item model="todo"></todo-item>
+       </li>
+     </ul>
+  </todo-container>
+  <todo-input-form></todo-input-form>
+</div>

@@ -1,0 +1,15 @@
+<div>
+  件名　：
+  <input type="text" class="js-text" />
+  <br>
+  優先度：
+  <input id="priority-high" type="radio" class="js-priority" name="priority" value="0"><label for="priority-high">高</label>
+  <input id="priority-mid"  type="radio" class="js-priority" name="priority" value="1" checked><label for="priority-mid">中</label>
+  <input id="priority-low"  type="radio" class="js-priority" name="priority" value="2"><label for="priority-low">低</label>
+  <br>
+  詳細　：
+  <textarea class="js-detail"></textarea>
+  <br>
+  <input type="button" class="js-add" value="add" />
+  <input type="button" value="clear" onclick="localStorage.clear()" />
+</div>

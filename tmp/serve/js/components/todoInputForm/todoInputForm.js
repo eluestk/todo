@@ -1,0 +1,15 @@
+'use strict';
+
+(function () {
+  'use strict';
+
+  var todoInputForm = function todoInputForm() {
+    return {
+      restrict: 'E',
+      templateUrl: 'app/components/todoInputForm/todoInputForm.html'
+    };
+  };
+
+  angular.module('todoApp').directive('todoInputForm', [todoInputForm]);
+})();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbXBvbmVudHMvdG9kb0lucHV0Rm9ybS90b2RvSW5wdXRGb3JtLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsQ0FBQyxZQUFNO0FBQ0wsY0FBWSxDQUFDOztBQUViLE1BQUksYUFBYSxHQUFJLFNBQWpCLGFBQWEsR0FBVTtBQUN6QixXQUFPO0FBQ0wsY0FBUSxFQUFFLEdBQUc7QUFDYixpQkFBVyxFQUFFLGlEQUFpRDtLQUMvRCxDQUFDO0dBQ0gsQUFBQyxDQUFBOztBQUVGLFNBQU8sQ0FBQyxNQUFNLENBQUMsU0FBUyxDQUFDLENBQUMsU0FBUyxDQUFDLGVBQWUsRUFBRSxDQUFDLGFBQWEsQ0FBQyxDQUFDLENBQUM7Q0FDdkUsQ0FBQSxFQUFHLENBQUMiLCJmaWxlIjoiY29tcG9uZW50cy90b2RvSW5wdXRGb3JtL3RvZG9JbnB1dEZvcm0uanMiLCJzb3VyY2VzQ29udGVudCI6WyIoKCkgPT4ge1xyXG4gICd1c2Ugc3RyaWN0JztcclxuICBcclxuICBsZXQgdG9kb0lucHV0Rm9ybSA9ICgoKSA9PiB7XHJcbiAgICByZXR1cm4ge1xyXG4gICAgICByZXN0cmljdDogJ0UnLFxyXG4gICAgICB0ZW1wbGF0ZVVybDogJ2FwcC9jb21wb25lbnRzL3RvZG9JbnB1dEZvcm0vdG9kb0lucHV0Rm9ybS5odG1sJ1xyXG4gICAgfTtcclxuICB9KVxyXG4gIFxyXG4gIGFuZ3VsYXIubW9kdWxlKCd0b2RvQXBwJykuZGlyZWN0aXZlKCd0b2RvSW5wdXRGb3JtJywgW3RvZG9JbnB1dEZvcm1dKTtcclxufSkoKTsiXSwic291cmNlUm9vdCI6Ii9zb3VyY2UvIn0=

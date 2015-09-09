@@ -22,7 +22,7 @@ var app = app || {};
       // todoItems.push(todoItem);
       this.todoItems.push(todoItem);
       // localStorageに書き込む
-      let item = app.common.setItem(todoItem.title, todoItem.priority, todoItem.detail);;
+      let item = app.common.toLocalStorageTodo(todoItem.title, todoItem.priority, todoItem.detail);
       localStorage.setItem(todoItem.id, JSON.stringify(item));
     }
     remove(todoItemIds) {
