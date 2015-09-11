@@ -8,5 +8,5 @@
     };
   })
   
-  angular.module('todoApp').directive('todoInputForm', [todoInputForm]);
+  angular.module('todoApp').directive('todoInputForm', todoInputForm);
 })();

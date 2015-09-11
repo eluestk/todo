@@ -1,4 +1,10 @@
-<input type="checkbox" id="todo-{{vm.model.id}}" class="js-checkbox" value="{{vm.model.id}}">
+<input 
+  type="checkbox" 
+  id="todo-{{vm.model.id}}"
+  class="js-checkbox"
+  value="vm.model.id"
+  ng-model="vm.model.isDone"
+  ng-change="vm.updateChecks()">
 <label for="todo-{{vm.model.id}}">
   <a href="detail/?id={{vm.model.id}}" title="{{vm.model.detail}}">{{vm.model.title}}</a>
 </label>

@@ -3,10 +3,13 @@
   
   class TodoItemCtrl {
     constructor() {
-      // this.model = null;
-      this.test = 'hogehogeg'
+      alert('hgoe')
+    }
+    updateChecks(event) {
+      alert(event);
     }
   };
+  TodoItemCtrl.$inject = [];
   
   let todoItem = () => {
     return {
@@ -21,5 +24,5 @@
     };
   };
   
-  angular.module('todoApp').directive('todoItem', [todoItem]);
+  angular.module('todoApp').directive('todoItem', todoItem);
 })();
