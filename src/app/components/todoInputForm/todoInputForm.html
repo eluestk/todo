@@ -1,17 +1,20 @@
+<p>
+ vm: {{vm | json}}
+</p>
 <div>
-  <form role="form" name="addItemForm">
+  <form name="addItemForm">
     件名　：
-    <input type="text" class="js-text" ng-model="vm.model.tempTodo.title" required="" />
+    <input type="text" class="js-text" ng-model="vm.tempTodo.title" required="" />
     <br>
     優先度：
-    <input id="priority-high" ng-model="vm.model.tempTodo.priority" type="radio" class="js-priority" name="priority" ng-value="{{ 0 }}"><label for="priority-high">高</label>
-    <input id="priority-mid"  ng-model="vm.model.tempTodo.priority" type="radio" class="js-priority" name="priority" ng-value="{{ 1 }}"><label for="priority-mid">中</label>
-    <input id="priority-low"  ng-model="vm.model.tempTodo.priority" type="radio" class="js-priority" name="priority" ng-value="{{ 2 }}"><label for="priority-low">低</label>
+    <input id="priority-high" ng-model="vm.tempTodo.priority" type="radio" class="js-priority" name="priority" ng-value="{{ 0 }}"><label for="priority-high">高</label>
+    <input id="priority-mid"  ng-model="vm.tempTodo.priority" type="radio" class="js-priority" name="priority" ng-value="{{ 1 }}"><label for="priority-mid">中</label>
+    <input id="priority-low"  ng-model="vm.tempTodo.priority" type="radio" class="js-priority" name="priority" ng-value="{{ 2 }}"><label for="priority-low">低</label>
     <br>
     詳細　：
-    <textarea class="js-detail" ng-model="vm.model.tempTodo.detail"></textarea>
+    <textarea class="js-detail" ng-model="vm.tempTodo.detail"></textarea>
     <br>
-    <input type="button" ng-click="vm.addTodo()" class="js-add" value="add" />
+    <input type="button" ng-click="vm.onAdd()" class="js-add" value="add" />
     <input type="button" ng-click="vm.clrTodo()" class="js-clr" value="clear" />
   </form>
 </div>

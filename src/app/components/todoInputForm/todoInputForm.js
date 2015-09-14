@@ -1,12 +1,30 @@
 (() => {
   'use strict';
+
+  class TodoInputFormCtrl {
+    constructor() {
+      console.log(this.model);
+    }
+    onAdd() {
+      alert('hoge')
+    }
+  }
   
-  let todoInputForm = (() => {
+  TodoInputFormCtrl.$inject = [];
+  
+  let todoInputForm = () => {
     return {
       restrict: 'E',
-      templateUrl: 'app/components/todoInputForm/todoInputForm.html'
+      templateUrl: 'app/components/todoInputForm/todoInputForm.html',
+      controller: TodoInputFormCtrl,
+      controllerAs: 'vm',
+      scope: true,
+      bindToController: {
+        model: '='
+      }
     };
-  })
+  }
   
-  angular.module('todoApp').directive('todoInputForm', todoInputForm);
+  angular.module('todoApp')
+    .directive('todoInputForm', todoInputForm);
 })();
