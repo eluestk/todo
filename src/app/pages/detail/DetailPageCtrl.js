@@ -2,10 +2,10 @@
   'use strict';
   
   class DetailPageCtrl {
-    constructor($scope, $routeParams, TodoMainService, TodoVOService) {
+    constructor($scope, $routeParams, TodoMainService, TodoHelper) {
       this.title = 'TODO:Detail';
       this.todoMainService = TodoMainService;
-      this.todoVoService = TodoVOService;
+      this.todoHelper = TodoHelper;
       
       this.itemId = $routeParams.id;
       
@@ -13,22 +13,26 @@
         tempTodo: {
           title: '',
           priority: 1,
-          detail: ''
+          detail: '',
+          isDone: false
         },
         todo: this.todoMainService.getTodo(this.itemId)
       }
-      
-      $scope.model = this.model;
-      
+           
+    };
+    
+    initInput() {
+      this.todoMainService.getTodo(this.itemId);
+      this.model.ids;
     };
     
     updateTodo() {
-      // this.todoMainService;
-    }
+      this.todoMainService;
+    };
     
   };
   
-  DetailPageCtrl.$inject = ['$scope', '$routeParams', 'TodoMainService', 'TodoVOService']
+  DetailPageCtrl.$inject = ['$scope', '$routeParams', 'TodoMainService', 'TodoHelper']
   angular.module('todoApp').controller('DetailPageCtrl', DetailPageCtrl);
       
   

@@ -8,7 +8,7 @@
     }
     
     toTodoVO(todoItem) {
-      return this.todoService.getInstance(
+      return this.todoVOService.getInstance(
         todoItem.id,
         todoItem.title,
         todoItem.priority,

@@ -3,11 +3,12 @@
 var gulp = require('gulp');
 var sourcemaps = require('gulp-sourcemaps');
 var babel = require('gulp-babel');
+var ts = require('gulp-typescript');
 var plumber = require('gulp-plumber');
 var browserSync = require('browser-sync').create(); 
 
-// scripts
-gulp.task('scripts', [], function() {
+// es6scripts
+gulp.task('es6scripts', [], function() {
 	return gulp.src('./src/app/**/*.js')
     .pipe(plumber())
 		.pipe(sourcemaps.init())
@@ -15,6 +16,11 @@ gulp.task('scripts', [], function() {
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest('./tmp/serve/js'))
 		.pipe(browserSync.reload({ stream: true }));
+});
+
+// typescript
+gulp.task('typescript', function() {
+  
 });
 
 // serve
@@ -29,7 +35,7 @@ gulp.task('serve', function() {
 		}
 	});
 	gulp.watch(['./src/app/**/*.js'], function(){
-		gulp.start('scripts');
+		gulp.start('es6scripts');
 	});
 	gulp.watch(['./src/*.html'], function(event){
 		browserSync.reload(event.path);

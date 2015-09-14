@@ -3,8 +3,7 @@
   id="todo-{{vm.model.id}}"
   class="js-checkbox"
   value="vm.model.id"
-  ng-model="vm.model.isDone"
-  ng-change="vm.updateChecks()">
+  ng-model="vm.model.isDone">
 <label for="todo-{{vm.model.id}}">
   <a href="detail/?id={{vm.model.id}}" title="{{vm.model.detail}}">{{vm.model.title}}</a>
 </label>

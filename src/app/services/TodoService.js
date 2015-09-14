@@ -10,18 +10,18 @@
       this.detail = detail;
       this.isDone = isDone;
     }
-    update(title, priority, detail, isDone) {
-      // Todoオブジェクトをアップデートする
-      this.title = title;
-      this.priority = priority;
-      this.detail = detail;
-      this.isDone = isDone;
+    
+    updateTodo() {
       // localStorageの内容をアップデートする
-      let todo = app.common.toLocalStorageTodo(title, priority, detail, isDone);
+      let todo = {
+        title: this.title,
+        priority: this.priority,
+        detail: this.detail,
+        isDone: this.isDone};
       localStorage.setItem(this.id, JSON.stringify(todo));
     }
-  };
-  
+  };    
+    
   class TodoService {
     getClass() {
       return Todo;

@@ -5,6 +5,13 @@
 	"editor.tabSize": 2,
 
 	// Controls if the editor will insert spaces for tabs. Accepted values:  "auto", true, false. If set to "auto", the value will be guessed when a file is opened.
-	"editor.insertSpaces": true
-
+	"editor.insertSpaces": true,
+  
+	// Configure glob patterns for excluding files and folders.
+	"files.exclude": {
+		"**/.git": true,
+		"**/.DS_Store": true,
+    "**/tmp": true,
+    "**/typings": true
+	}
 }

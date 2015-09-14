@@ -2,7 +2,7 @@
   'use strict';
   
   class TodoContainerCtrl {
-    constructor(TodoMainService, TodoViewHelper) {
+    constructor($scope, TodoMainService, TodoViewHelper) {
       this.todoMainService = TodoMainService;
       this.todoViewHelper = TodoViewHelper;
     }
@@ -12,7 +12,7 @@
       this.todoViewHelper.removeTodo(this.model.todos, doneIds);
     }
   };
-  TodoContainerCtrl.$inject = ['TodoMainService', 'TodoViewHelper'];
+  TodoContainerCtrl.$inject = ['$scope', 'TodoMainService', 'TodoViewHelper'];
       
   let todoContainer = (() => {
     return {

@@ -2,8 +2,9 @@
   'use strict';
   
  class TodoMainService {
-    constructor(TodosService, TodoVOService, TodoHelper) {
+    constructor(TodosService, TodoService, TodoVOService, TodoHelper) {
       this.todosService = TodosService;
+      this.todoService = TodoService;
       this.todoVOService = TodoVOService;
       this.todoHelper = TodoHelper;
       this.todos;
@@ -12,7 +13,11 @@
        
     getTodos() {
       this.todos = this.todosService.getInstance();
-      return this.todos.todoItems;
+      this.todos.todoVOItems = [];
+      this.todos.todoItems.forEach((todoItem) => {
+        this.todos.todoVOItems.push(this.todoHelper.toTodoVO(todoItem));
+      });
+      return this.todos.todoVOItems;
     };
     
     getTodo(id) {
@@ -39,12 +44,17 @@
       this.todos.remove(todoItemIds);
     };
     
-    // todoListとLocalStorageのtodoItemを更新する
     updateTodo(todoItem) {
-      
+      this.todoService.getInstance(
+        todoItem.id,
+        todoItem.title,
+        todoItem.priority,
+        todoItem.detail,
+        todoItem.isDone)
+        .updateTodo();
     };
   };
   
-  TodoMainService.$inject = ['TodosService', 'TodoVOService', 'TodoHelper'];
+  TodoMainService.$inject = ['TodosService', 'TodoService', 'TodoVOService', 'TodoHelper'];
   angular.module('todoApp').service('TodoMainService', TodoMainService);
 })();
