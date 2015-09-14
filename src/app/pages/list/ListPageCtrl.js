@@ -23,9 +23,9 @@
         },
         todos: this.todoMainService.getTodos()
       };
-      
-      $scope.$watch('vm.model.todoInputForm.confirmedTodo', () => {
-        // this.model.todos.push(this.model.todoInputForm.confirmedTodo);
+ 
+      $scope.$watch('vm.model.todoInputForm.confirmedTodo', (todoItem) => {
+        this.model.todos.push(todoItem);
       });
     }
 

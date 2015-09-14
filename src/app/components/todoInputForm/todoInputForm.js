@@ -2,11 +2,12 @@
   'use strict';
 
   class TodoInputFormCtrl {
-    constructor() {
-      console.log(this.model);
-    }
     onAdd() {
-      alert('hoge')
+      this.model.confirmedTodo = {
+        title: this.model.tempTodo.title,
+        priority: this.model.tempTodo.priority,
+        detail: this.model.tempTodo.detail
+      };
     }
   }
   
@@ -18,9 +19,12 @@
       templateUrl: 'app/components/todoInputForm/todoInputForm.html',
       controller: TodoInputFormCtrl,
       controllerAs: 'vm',
-      scope: true,
-      bindToController: {
+      scope: {
         model: '='
+      },
+      bindToController: true,
+      link: (scope, iElement, iAttrs, controller, transcludeFn) => {
+        console.dir(scope);
       }
     };
   }
