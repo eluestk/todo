@@ -4,12 +4,10 @@
   class TodoItemCtrl {
     constructor($scope, TodoMainService, TodoHelper) {
     
-    this.todoMainService = TodoMainService;
-    this.todoHelper = TodoHelper;
+      this.todoMainService = TodoMainService;
+      this.todoHelper = TodoHelper;
     
-      $scope.$watch(() => {
-        return this.model.isDone;
-      }, (newVal, oldVal) => {
+      $scope.$watch('vm.model.isDone', (newVal, oldVal) => {
         if ((newVal !== oldVal)) {
           this.todoMainService.updateTodo(this.todoHelper.toTodo(this.model));
         }

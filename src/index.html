@@ -3,13 +3,18 @@
   <head>
     <meta charset="UTF-8">
     <title>TODO SPA on ES6+AngularJS</title>
-    <!--<base href="/">-->
+    <style type="text/css">  
+ 
+      .todo-is-done { text-decoration: line-through}
+      .priority-high { background-color: orangered; }
+      .priority-med  { background-color: yellow }
+      .priority-low  { background-color: aqua }
+    
+    </style>  
   </head>
   <body>
     <div>
-      <a href="/list">list</a>
-      <a href="/detail">detail</a>
-      <a href="/otherwise">otherwise</a>
+      <a href="#/list">Main Page</a>
     </div>
     <hr>
     <div ng-view></div>

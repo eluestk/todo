@@ -1,13 +1,11 @@
 <div>
   <header-global></header-global>
-  <todo-container model="vm.model">
+  <todo-container model="vm.model.todos">
      <li ng-repeat="todo in vm.model.todos">
       <todo-item model="todo"></todo-item>
     </li>
   </todo-container>
-  <todo-input-form model="vm.model.todoInputForm"></todo-input-form>
-  <!--<button ng-click="vm.setDummy()">ダミーデータ</button>-->
+  <todo-input-form model="vm.model.todoInputForm"></todo-input-form>  
   <div>
-    {{ vm.model.todoInputForm | json }}
   </div>
 </div>

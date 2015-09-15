@@ -1,9 +1,14 @@
 <input 
   type="checkbox" 
-  id="todo-{{vm.model.id}}"
-  class="js-checkbox"
+  id="todo-{{ vm.model.id }}"
   value="vm.model.id"
   ng-model="vm.model.isDone">
-<label for="todo-{{vm.model.id}}">
-  <a href="detail/?id={{vm.model.id}}" title="{{vm.model.detail}}">{{vm.model.title}}</a>
+<label
+  for="todo-{{ vm.model.id }}"
+  ng-class="{'todo-is-done': vm.model.isDone,
+    'priority-high': vm.model.priority === 0,
+    'priority-med': vm.model.priority === 1,
+    'priority-low': vm.model.priority === 2,
+    }">
+  <a href="#/detail/?id={{vm.model.id}}" title="{{vm.model.detail}}">{{vm.model.title}}</a>
 </label>

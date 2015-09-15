@@ -11,7 +11,6 @@
     詳細　：
     <textarea class="js-detail" ng-model="vm.model.tempTodo.detail"></textarea>
     <br>
-    <input type="button" ng-click="vm.onAdd()" class="js-add" value="add" />
-    <input type="button" ng-click="vm.clrTodo()" class="js-clr" value="clear" />
+    <input type="button" ng-click="vm.onAdd()" class="js-add" value="{{vm.model.buttonName}}" />
   </form>
 </div>

@@ -1,13 +1,16 @@
 (() => {
   'use strict';
   class ListPageCtrl {
-    constructor($scope, TodoMainService, TodoVOService, TodoViewHelper) {
+    constructor($scope, TodoMainService, TodoVOService, TodoViewHelper, TodoHelper) {
       
       this.title = 'TODO:List';
       this.todoMainService = TodoMainService;
       this.todoVoService = TodoVOService;
       this.todoViewHelper = TodoViewHelper;
-      
+      this.todoHelper = TodoHelper;
+ 
+      this.todoMainService.clearTodos();
+
       this.model = {
         todoInputForm: {
           confirmedTodo: {
@@ -19,40 +22,22 @@
             title: '',
             priority: 1,
             detail: ''
-          }
+          },
+          buttonName: 'add'
         },
         todos: this.todoMainService.getTodos()
       };
  
-      $scope.$watch('vm.model.todoInputForm.confirmedTodo', (todoItem) => {
-        this.model.todos.push(todoItem);
+      $scope.$watch('vm.model.todoInputForm.confirmedTodo', (todoItem, oldItem) => {
+        if (todoItem === oldItem) {
+          return;
+        }
+        let todoVO = this.todoHelper.toTodoVO(todoItem);
+        this.todoMainService.addTodo(todoVO);
+        this.model.todos.push(todoVO);
+        this.clearTodoInputForm();
       });
     }
-
-    addTodo() {
-      
-      if(this.model.tempTodo.title) {
-        let title = this.model.tempTodo.title;
-        let priority = this.model.tempTodo.priority;
-        let detail = this.model.tempTodo.detail;
-        this.model.confirmedTodo = this.model.tempTodo;
-        this.model.tempTodo.title = '';
-        this.model.tempTodo.priority = 1;
-        this.model.tempTodo.detail = '';
-        
-        this.todoMainService.addTodo(title, priority, detail);
-      } else {
-        alert('件名を入力してください');
-      }
-    };
-    
-    clrTodo() {
-      if(confirm('erase all data?')) localStorage.clear();
-    };
-    
-    updateChecks() {
-      console.log('update me!!!')
-    };
     
     setDummy() {
       let item = {
@@ -63,9 +48,16 @@
       }
       localStorage.setItem(Date.now().toString(), JSON.stringify(item));
     }
+    
+    clearTodoInputForm() {
+      this.model.todoInputForm.tempTodo.title = '';
+      this.model.todoInputForm.tempTodo.priority = 1;
+      this.model.todoInputForm.tempTodo.detail = '';
+    }
   }
+
   ListPageCtrl.$inject = [
-    '$scope','TodoMainService', 'TodoVOService', 'TodoViewHelper'];
+    '$scope','TodoMainService', 'TodoVOService', 'TodoViewHelper', 'TodoHelper'];
 
   angular.module('todoApp').controller('ListPageCtrl', ListPageCtrl);
 })();

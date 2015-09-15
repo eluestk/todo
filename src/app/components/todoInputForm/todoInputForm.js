@@ -3,15 +3,17 @@
 
   class TodoInputFormCtrl {
     onAdd() {
-      this.model.confirmedTodo = {
-        title: this.model.tempTodo.title,
-        priority: this.model.tempTodo.priority,
-        detail: this.model.tempTodo.detail
-      };
+      if (!this.model.tempTodo.title) {
+        alert('件名を入力してください');
+      } else {
+        this.model.confirmedTodo = {
+          title: this.model.tempTodo.title,
+          priority: this.model.tempTodo.priority,
+          detail: this.model.tempTodo.detail
+        };
+      }
     }
   }
-  
-  TodoInputFormCtrl.$inject = [];
   
   let todoInputForm = () => {
     return {
@@ -22,10 +24,7 @@
       scope: {
         model: '='
       },
-      bindToController: true,
-      link: (scope, iElement, iAttrs, controller, transcludeFn) => {
-        console.dir(scope);
-      }
+      bindToController: true
     };
   }
   

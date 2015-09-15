@@ -5,11 +5,19 @@
     constructor($scope, TodoMainService, TodoViewHelper) {
       this.todoMainService = TodoMainService;
       this.todoViewHelper = TodoViewHelper;
+      
+      $scope.$watch('vm.model', () => {
+        let doneItems = this.model.filter((todo) => {
+          return todo.isDone;
+        });
+        this.doneCount = doneItems.length;
+      }, true);
     }
+    
     onArchiveTodo() {
-      const doneIds = this.todoViewHelper.getDoneIds(this.model.todos);
-      this.todoMainService.removeTodo(doneIds);
-      this.todoViewHelper.removeTodo(this.model.todos, doneIds);
+      const doneIds = this.todoViewHelper.getDoneIds(this.model);
+      this.todoMainService.removeTodos(doneIds);
+      this.todoViewHelper.removeTodo(this.model, doneIds);
     }
   };
   TodoContainerCtrl.$inject = ['$scope', 'TodoMainService', 'TodoViewHelper'];
@@ -20,11 +28,11 @@
       templateUrl: 'app/components/todoContainer/todoContainer.html',
       controller: TodoContainerCtrl,
       controllerAs: 'vm',
-      scope: true,
       transclude: true,
-      bindToController: {
+      scope: {
         model: '='
-      }
+      },
+      bindToController: true
     };
   })
   

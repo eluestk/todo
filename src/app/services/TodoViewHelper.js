@@ -13,13 +13,15 @@
     };
     
     removeTodo(targetTodos, removeIds) {
-      targetTodos = targetTodos.filter((todo) => {
-        let check = 0;
-        removeIds.forEach((removeId) => {
-          if (todo.id === removeId) { check++ }
-        });
-        return !check;
-      });
+      for (var i = 0; i < targetTodos.length; i++) {
+        for (var j = 0; j < removeIds.length; j++) {
+          if (targetTodos[i].id === removeIds[j]) {
+            targetTodos.splice(i, 1);
+            i--;
+            break;
+          }
+        }
+      }
     };
     
   }

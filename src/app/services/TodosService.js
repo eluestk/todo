@@ -15,7 +15,7 @@
           this.todoItems.push(todoItem);
         }
       }
-    };
+    }
     add(todo) {
       // todoItems.push(todoItem);
       let todoItem = new this.Todo(todo.id, todo.title, todo.priority, todo.detail, todo.isDone);
@@ -23,13 +23,11 @@
       // localStorageに書き込む
       let item = this.toLocalStorageTodo(todoItem.title, todoItem.priority, todoItem.detail, todoItem.isDone);
       localStorage.setItem(todoItem.id, JSON.stringify(item));
-    };
+    }
     remove(todoItemIds) {
       // localStorageから消す
-      for(let i = 0; i < todoItemIds.length; i++) {
-        localStorage.removeItem(todoItemIds[i]);
-      }
-    };
+      todoItemIds.forEach((id) => localStorage.removeItem(id));
+    }
     toLocalStorageTodo(title, priority, detail, isDone) {
       let item = {
         title,
@@ -38,21 +36,29 @@
         isDone
       };
       return item;
-    };
+    }
   };
   
   class TodosService {
     constructor(TodoService) {
       this.todoService = TodoService;
+      this.todos = null;
     }
     getClass() {
       return Todos;
-    };
+    }
     
     getInstance() {
-      return new Todos(this.todoService.getClass());
-    };
-  };
+      if (this.todos !== null) {
+        return this.todos;
+      }
+      this.todos = new Todos(this.todoService.getClass());
+      return this.todos;
+    }
+    clear() {
+      this.todos = null;
+    }
+  }
   
   TodosService.$inject = ['TodoService'];
   angular.module('todoApp').service('TodosService', TodosService);
