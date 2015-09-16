@@ -3,12 +3,11 @@
 var gulp = require('gulp');
 var sourcemaps = require('gulp-sourcemaps');
 var babel = require('gulp-babel');
-var ts = require('gulp-typescript');
+var typescript = require('gulp-typescript');
 var plumber = require('gulp-plumber');
 var browserSync = require('browser-sync').create(); 
 
-// es6scripts
-gulp.task('es6scripts', [], function() {
+gulp.task('babel-compile', [], function() {
 	return gulp.src('./src/app/**/*.js')
     .pipe(plumber())
 		.pipe(sourcemaps.init())
@@ -19,8 +18,21 @@ gulp.task('es6scripts', [], function() {
 });
 
 // typescript
-gulp.task('typescript', function() {
+gulp.task('typescript-compile', function() {
   
+  var tsProject = typescript.createProject({
+      target: "ES5",
+      sortOutput: true,
+      noImplicitAny: true
+  });
+  
+  return gulp.src('./src/app/**/*.ts')
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(typescript(tsProject))
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('./tmp/serve/js'))
+    .pipe(browserSync.reload({ stream: true }));
 });
 
 // serve
@@ -35,7 +47,10 @@ gulp.task('serve', function() {
 		}
 	});
 	gulp.watch(['./src/app/**/*.js'], function(){
-		gulp.start('es6scripts');
+		gulp.start('babel-compile');
+	});
+  gulp.watch(['./src/app/**/*.ts'], function(){
+		gulp.start('typescript-compile');
 	});
 	gulp.watch(['./src/*.html'], function(event){
 		browserSync.reload(event.path);
